@@ -238,8 +238,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help:
 - Create an issue on GitHub
-- Email: ali@example.com
-- LinkedIn: [Your LinkedIn]
+- Email: sharifima93@gmail.com
+- LinkedIn: [https://www.linkedin.com/in/alisharifi2/]
 
 ---
 
