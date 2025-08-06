@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { ChevronDown, ArrowRight, Code, Zap, Cpu, Globe, Smartphone, Monitor, Layers, Sparkles } from 'lucide-react'
@@ -500,6 +501,8 @@ function SimpleSphere() {
 }
 
 export default function HeroSection() {
+  const [imageMode, setImageMode] = useState<'normal' | 'upper' | 'center' | 'lower'>('normal')
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId)
     if (element) {
@@ -507,8 +510,40 @@ export default function HeroSection() {
     }
   }
 
+  const handleImageClick = () => {
+    const modes: Array<'normal' | 'upper' | 'center' | 'lower'> = ['normal', 'upper', 'center', 'lower']
+    const currentIndex = modes.indexOf(imageMode)
+    const nextIndex = (currentIndex + 1) % modes.length
+    setImageMode(modes[nextIndex])
+  }
+
+  const getImageStyle = () => {
+    switch (imageMode) {
+      case 'upper':
+        return {
+          objectPosition: '30% 25%',
+          objectFit: 'cover' as const,
+        }
+      case 'center':
+        return {
+          objectPosition: '30% 35%',
+          objectFit: 'cover' as const,
+        }
+      case 'lower':
+        return {
+          objectPosition: '30% 45%',
+          objectFit: 'cover' as const,
+        }
+      default:
+        return {
+          objectPosition: '30% 35%',
+          objectFit: 'cover' as const,
+        }
+    }
+  }
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden lg:pt-0 pt-16">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-black" />
       
@@ -670,11 +705,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            style={{ transform: 'translateX(20px)' }}
           >
             <div className="relative">
               {/* Profile Image Container */}
               <motion.div
-                className="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-red-500/30 shadow-2xl relative"
+                className="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-red-500/30 shadow-2xl relative cursor-pointer"
                 style={{
                   background: 'linear-gradient(45deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1))'
                 }}
@@ -691,17 +727,22 @@ export default function HeroSection() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
+                onClick={handleImageClick}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {/* Replace 'your-photo.jpg' with your actual image path */}
+                {/* Interactive Profile Image */}
                 <img
-                  src="/IMG_1528.jpeg"
+                  src="/1.jpeg"
                   alt="Ali - Front-End Developer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-all duration-500 ease-in-out"
                   style={{
                     filter: 'contrast(1.2) brightness(0.9) saturate(1.1) hue-rotate(5deg)',
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
-                    isolation: 'isolate'
+                    isolation: 'isolate',
+                    transform: 'scale(1.2) translateY(16px) translateX(6px)',
+                    ...getImageStyle()
                   }}
                   onError={(e) => {
                     // Fallback to a placeholder if image doesn't load

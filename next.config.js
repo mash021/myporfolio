@@ -1,6 +1,7 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export", // این خط برای تولید خروجی استاتیک
   images: {
+    unoptimized: true, // برای اینکه Image Optimization در استاتیک کار نمی‌کند
     domains: ["images.unsplash.com", "via.placeholder.com"],
   },
   webpack: (config) => {
