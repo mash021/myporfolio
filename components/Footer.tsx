@@ -22,7 +22,7 @@ export default function Footer() {
             className="col-span-1 md:col-span-2"
           >
             <h3 className="text-2xl font-bold mb-4">
-              <span className="text-white">Ali</span><span className="text-red-500">.dev</span>
+              <span className="text-white">alisharifi</span><span className="text-red-500">.dk</span>
             </h3>
             <p className="text-gray-400 mb-6 max-w-md">
               Front-End Developer passionate about creating beautiful, interactive, 
