@@ -63,7 +63,7 @@ export default function Navbar() {
                 scrollToSection('#home')
               }}
             >
-              <span className="text-white">alisharifi</span><span className="text-red-500">.dk</span>
+              <span className="text-white">Alisharifi</span><span className="text-red-500">.dk</span>
             </a>
           </motion.div>
 
