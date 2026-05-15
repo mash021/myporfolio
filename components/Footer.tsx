@@ -1,7 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Heart, ArrowUp } from 'lucide-react'
+import { Heart, ArrowUp, Github, Linkedin } from 'lucide-react'
+import { siteConfig } from '@/lib/site'
+
+const socialLinks = [
+  { label: 'GitHub', href: siteConfig.social.github, icon: Github },
+  { label: 'LinkedIn', href: siteConfig.social.linkedin, icon: Linkedin },
+]
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -14,7 +20,6 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -22,28 +27,29 @@ export default function Footer() {
             className="col-span-1 md:col-span-2"
           >
             <h3 className="text-2xl font-bold mb-4">
-              <span className="text-white">Alisharifi</span><span className="text-red-500">.dk</span>
+              <span className="text-white">{siteConfig.name}</span>
+              <span className="text-red-500"> {siteConfig.lastName}</span>
             </h3>
-            <p className="text-gray-400 mb-6 max-w-md">
-              Front-End Developer passionate about creating beautiful, interactive, 
-              and modern web experiences that leave a lasting impression.
-            </p>
+            <p className="text-gray-400 mb-6 max-w-md">{siteConfig.description}</p>
             <div className="flex space-x-4">
-              {['GitHub', 'LinkedIn', 'Twitter', 'Dribbble'].map((platform) => (
+              {socialLinks.map((social) => (
                 <motion.a
-                  key={platform}
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={social.label}
                 >
-                  {platform}
+                  <social.icon className="w-5 h-5" />
+                  <span>{social.label}</span>
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,21 +57,20 @@ export default function Footer() {
           >
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Projects', 'Contact'].map((link) => (
-                <li key={link}>
+              {siteConfig.navItems.map((link) => (
+                <li key={link.name}>
                   <motion.a
-                    href={`#${link.toLowerCase()}`}
+                    href={link.href}
                     className="text-gray-400 hover:text-white transition-colors duration-300"
                     whileHover={{ x: 5 }}
                   >
-                    {link}
+                    {link.name}
                   </motion.a>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -75,38 +80,37 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 'Web Development',
-                '3D Web Applications',
-                'UI/UX Design',
-                'Consulting'
+                'React & Next.js Apps',
+                'UI/UX Implementation',
+                'Consulting',
               ].map((service) => (
                 <li key={service}>
-                  <span className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">
-                    {service}
-                  </span>
+                  <span className="text-gray-400">{service}</span>
                 </li>
               ))}
             </ul>
           </motion.div>
         </div>
 
-        {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
-          <div className="flex items-center space-x-2 text-gray-400 mb-4 md:mb-0">
-            <span>© {currentYear} Ali. All rights reserved.</span>
+          <motion.div className="flex items-center space-x-2 text-gray-400 mb-4 md:mb-0">
+            <span>
+              © {currentYear} {siteConfig.name}. All rights reserved.
+            </span>
             <span>•</span>
             <span className="flex items-center">
-              Made with <Heart className="w-4 h-4 mx-1 text-red-500" /> by Ali
+              Made with <Heart className="w-4 h-4 mx-1 text-red-500" /> by {siteConfig.name}
             </span>
-          </div>
+          </motion.div>
 
           <motion.button
             onClick={scrollToTop}
-            className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors duration-300"
+            className="flex items-center space-x-2 btn-primary px-4 py-2 rounded-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -117,4 +121,4 @@ export default function Footer() {
       </div>
     </footer>
   )
-} 
+}

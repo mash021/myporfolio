@@ -5,12 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from './ThemeProvider'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 
-const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
-]
+import { siteConfig } from '@/lib/site'
+
+const navItems = siteConfig.navItems
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -63,7 +60,8 @@ export default function Navbar() {
                 scrollToSection('#home')
               }}
             >
-              <span className="text-white">Alisharifi</span><span className="text-red-500">.dk</span>
+              <span className="text-white">{siteConfig.name}</span>
+              <span className="text-red-500">{siteConfig.lastName}</span>
             </a>
           </motion.div>
 

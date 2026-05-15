@@ -1,22 +1,24 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // این خط برای تولید خروجی استاتیک
   images: {
-    unoptimized: true, // برای اینکه Image Optimization در استاتیک کار نمی‌کند
-    domains: ["images.unsplash.com", "via.placeholder.com"],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'ui-avatars.com' },
+    ],
   },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
       use: {
-        loader: "file-loader",
+        loader: 'file-loader',
         options: {
-          publicPath: "/_next/static/files",
-          outputPath: "static/files",
+          publicPath: '/_next/static/files',
+          outputPath: 'static/files',
         },
       },
-    });
-    return config;
+    })
+    return config
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

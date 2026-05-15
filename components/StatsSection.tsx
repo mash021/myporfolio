@@ -77,7 +77,7 @@ export default function StatsSection() {
   })
 
   return (
-    <section className="py-20 bg-black relative overflow-hidden">
+    <section id="stats" className="py-20 bg-black relative overflow-hidden">
       {/* Animated Background Stars */}
       <div className="absolute inset-0">
         {[...Array(50)].map((_, i) => (

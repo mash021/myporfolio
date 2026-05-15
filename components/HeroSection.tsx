@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { ChevronDown, ArrowRight, Code, Zap, Cpu, Globe, Smartphone, Monitor, Layers, Sparkles } from 'lucide-react'
+import { siteConfig, getTypingSequence } from '@/lib/site'
 
 function FloatingDevices() {
   return (
@@ -640,10 +641,10 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-white">Hi, I'm </span>
-              <span className="glass-text-red">Ali</span>
+              <span className="text-white">Hi, I&apos;m </span>
+              <span className="glass-text-red">{siteConfig.name}</span>
               <br />
-              <span className="text-white">Front-End Developer</span>
+              <span className="text-white">{siteConfig.title}</span>
             </motion.h1>
 
             <motion.div
@@ -653,18 +654,7 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <TypeAnimation
-                sequence={[
-                  'I build interactive, responsive, and modern web experiences.',
-                  2000,
-                  'I create stunning 3D web applications.',
-                  2000,
-                  'I craft beautiful user interfaces.',
-                  2000,
-                  'I specialize in React.js and Next.js development.',
-                  2000,
-                  'I build scalable and performant web applications.',
-                  2000,
-                ]}
+                sequence={[...getTypingSequence()]}
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
@@ -680,7 +670,7 @@ export default function HeroSection() {
             >
               <motion.button
                 onClick={() => scrollToSection('#projects')}
-                className="group px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2"
+                className="group px-8 py-4 btn-primary rounded-full text-lg flex items-center justify-center space-x-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -690,7 +680,7 @@ export default function HeroSection() {
 
               <motion.button
                 onClick={() => scrollToSection('#contact')}
-                className="px-8 py-4 border-2 border-red-500 text-white rounded-full font-semibold text-lg hover:bg-red-500 hover:text-white transition-all duration-300"
+                className="px-8 py-4 btn-outline rounded-full text-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -733,8 +723,8 @@ export default function HeroSection() {
               >
                 {/* Interactive Profile Image */}
                 <img
-                  src="/1.jpeg"
-                  alt="Ali - Front-End Developer"
+                  src="/profile.JPG"
+                  alt={`${siteConfig.fullName} - ${siteConfig.title}`}
                   className="w-full h-full object-cover transition-all duration-500 ease-in-out"
                   style={{
                     filter: 'contrast(1.2) brightness(0.9) saturate(1.1) hue-rotate(5deg)',
