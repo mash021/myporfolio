@@ -100,7 +100,6 @@ dist
 
 # Gatsby files
 .cache/
-public
 
 # Storybook build outputs
 .out
@@ -108,4 +107,8 @@ public
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Deploy artifacts (do not commit)
+*.zip
+out/ 
