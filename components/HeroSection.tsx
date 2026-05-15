@@ -723,7 +723,7 @@ export default function HeroSection() {
               >
                 {/* Interactive Profile Image */}
                 <img
-                  src="/profile.JPG"
+                  src="/D806DFF8-0E15-4FBD-8AF5-EBD018A08E95.PNG"
                   alt={`${siteConfig.fullName} - ${siteConfig.title}`}
                   className="w-full h-full object-cover transition-all duration-500 ease-in-out"
                   style={{
