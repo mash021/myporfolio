@@ -123,33 +123,6 @@ export default function ContactSection() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mb-8"
-        >
-          {!isEmailConfigured && (
-            <div className="max-w-3xl mx-auto p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-amber-800 dark:text-amber-200 text-sm text-center">
-              Contact form needs EmailJS keys. Copy <code>.env.example</code> to{' '}
-              <code>.env.local</code> and add your keys from{' '}
-              <a
-                href="https://www.emailjs.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline font-medium"
-              >
-                emailjs.com
-              </a>
-              . Until then, email me directly at{' '}
-              <a href={`mailto:${siteConfig.email}`} className="underline font-medium">
-                {siteConfig.email}
-              </a>
-              .
-            </div>
-          )}
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.15 }}

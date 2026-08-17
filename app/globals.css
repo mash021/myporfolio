@@ -69,9 +69,13 @@ body {
   background: #64748b;
 }
 
-/* Smooth transitions */
+/* Smooth transitions.
+   Scoped to color-related props only: a global `transition: all` forces the
+   browser to transition transform/opacity/layout on every element, which
+   fights framer-motion's own transform/opacity animations and causes jank. */
 * {
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
 }
 
 /* Custom gradient text */

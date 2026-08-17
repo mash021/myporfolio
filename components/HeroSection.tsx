@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { ChevronDown, ArrowRight, Code, Zap, Cpu, Globe, Smartphone, Monitor, Layers, Sparkles } from 'lucide-react'
@@ -503,6 +503,22 @@ function SimpleSphere() {
 
 export default function HeroSection() {
   const [imageMode, setImageMode] = useState<'normal' | 'upper' | 'center' | 'lower'>('normal')
+
+  // Precompute random particle values once so they are not recreated on every
+  // re-render (e.g. when the profile image mode changes). Keeps the exact same
+  // visuals while avoiding wasted work and layout thrash.
+  const particles = useMemo(
+    () =>
+      [...Array(100)].map(() => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        width: Math.random() * 3 + 1,
+        height: Math.random() * 3 + 1,
+        duration: 2 + Math.random() * 3,
+        delay: Math.random() * 4,
+      })),
+    []
+  )
   
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId)
@@ -550,15 +566,16 @@ export default function HeroSection() {
       
       {/* Animated Background Particles */}
       <div className="absolute inset-0">
-        {[...Array(100)].map((_, i) => (
+        {particles.map((p, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              width: `${p.width}px`,
+              height: `${p.height}px`,
+              willChange: 'transform, opacity',
             }}
             animate={{
               y: [0, -30, 0],
@@ -571,9 +588,9 @@ export default function HeroSection() {
               ],
             }}
             transition={{
-              duration: 2 + Math.random() * 3,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 4,
+              delay: p.delay,
               ease: "easeInOut"
             }}
           >
@@ -702,7 +719,8 @@ export default function HeroSection() {
               <motion.div
                 className="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-red-500/30 shadow-2xl relative cursor-pointer"
                 style={{
-                  background: 'linear-gradient(45deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1))'
+                  background: 'linear-gradient(45deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1))',
+                  willChange: 'transform'
                 }}
                 animate={{
                   scale: [1, 1.05, 1],

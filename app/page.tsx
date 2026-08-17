@@ -1,13 +1,29 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
-import AboutSection from '@/components/AboutSection'
-import ProjectsSection from '@/components/ProjectsSection'
-import StatsSection from '@/components/StatsSection'
-import ContactSection from '@/components/ContactSection'
-import Footer from '@/components/Footer'
+
+const SectionFallback = () => (
+  <div className="min-h-[60vh] w-full" aria-hidden="true" />
+)
+
+const AboutSection = dynamic(() => import('@/components/AboutSection'), {
+  loading: SectionFallback,
+})
+const ProjectsSection = dynamic(() => import('@/components/ProjectsSection'), {
+  loading: SectionFallback,
+})
+const StatsSection = dynamic(() => import('@/components/StatsSection'), {
+  loading: SectionFallback,
+})
+const ContactSection = dynamic(() => import('@/components/ContactSection'), {
+  loading: SectionFallback,
+})
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: SectionFallback,
+})
 
 export default function Home() {
   return (
