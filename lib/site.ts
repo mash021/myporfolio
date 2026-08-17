@@ -64,6 +64,17 @@ export const siteConfig = {
       githubUrl: '',
       color: '#991b1b',
     },
+    {
+      id: 3,
+      title: 'CAPI Studio Gear — Concept Design',
+      description:
+        'A design-driven concept for a recording-studio equipment shop, themed around vintage 500-series hardware. Features an interactive knob logo, hardware-style UI, dark/light theme, and detailed product modules — a UI/UX design study.',
+      image: '/projects/capi.png',
+      technologies: ['Vue.js', 'Vite', 'CSS', 'UI/UX Design'],
+      liveUrl: 'https://capi-knznbwjin-mohammad-alis-projects-0bfa555f.vercel.app/index.html',
+      githubUrl: 'https://github.com/mash021/capi-moc',
+      color: '#007DC5',
+    },
   ],
   navItems: [
     { name: 'Home', href: '#home' },
